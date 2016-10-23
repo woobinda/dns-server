@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-
 from dnslib import DNSRecord, RR, A
 from dnslib.server import DNSServer, DNSHandler, BaseResolver, DNSLogger
 
@@ -11,26 +10,25 @@ class InterceptResolver(BaseResolver):
                             (optionally intercepting)
             
     """
-    def __init__(self, upstream, upstream_port, address, blacklist, blocked_answer):
+    def __init__(self, upstream, upstream_port, address, blacklist, block_answer):
         """
-            upstream/upstream_port      - upstream server
+            upstream/upstream_port      - upstream server ip and port
+            address                     - listen address
             blacklist                   - list of blocked domain names
-            blocked_answer              - default response if the queried domain name in the blacklist
+            block_answer                - default response if the queried domain name in the blacklist
         """
         self.upstream = upstream
         self.upstream_port = upstream_port
         self.address = address
         self.blacklist = blacklist
-        self.blocked_answer = blocked_answer
+        self.block_answer = block_answer
 
     def resolve(self, request, handler):
         reply = request.reply()
         qname = request.q.qname
-        print(qname)
 
         if qname in self.blacklist:
-            print('BANNED')
-            answer = RR(self.blocked_answer,rdata=A(self.address))
+            answer = RR(self.block_answer, rdata=A(self.address))
             reply.add_answer(answer)
             return reply
 
@@ -44,7 +42,7 @@ class InterceptResolver(BaseResolver):
 
 if __name__ == '__main__':
 
-    import config, time
+    import time, config
 
     port = 53
     address = '0.0.0.0'
@@ -56,7 +54,7 @@ if __name__ == '__main__':
                                  upstream_port,
                                  address,
                                  blacklist=config.blacklist,
-                                 blocked_answer=config.blocked_answer)
+                                 block_answer=config.block_answer)
 
     print("Starting Intercept Proxy (%s:%d -> %s:%d) [%s]" % (
                         address or "*", port,
