@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+from dnslib.dns import DNSRecord
 
-import socket
+def dns_request(domain, qtype, address="127.0.0.1", port=53, nodig=False):
+    request = DNSRecord.question(domain, qtype)
+    a_pkt = request.send(address,port)
+    answer = DNSRecord.parse(a_pkt)
+    return answer
 
-sock = socket.socket()
-sock.connect(('localhost', 2053))
-sock.send('google.com')
-
-data = sock.recv(1024)
-sock.close()
-
-print(data)
+answer = dns_request('facebook.com', 'A')
+print(answer)
