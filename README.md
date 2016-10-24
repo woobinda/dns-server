@@ -6,3 +6,6 @@ The default server listens to 127.0.0.1 port 53.
 config.py - startup config for DNS server.
 
 client.py - is a simple dns client, that may be used to testing responses from DNS server, results are displayed in the console.
+
+To install all dependency and run server may use Makefile with console command:    
+$make start
