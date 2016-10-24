@@ -6,17 +6,19 @@ from dnslib.server import DNSServer, DNSHandler, BaseResolver, DNSLogger
 
 class InterceptResolver(BaseResolver):
     """
-        InterceptResolver - proxy requests to upstream server 
+        InterceptResolver - proxy requests to upstream server
                             (optionally intercepting)
             
     """
     def __init__(self, upstream, upstream_port, address, blacklist, block_answer):
+
         """
             upstream/upstream_port      - upstream server ip and port
             address                     - listen address
             blacklist                   - list of blocked domain names
             block_answer                - default response if the queried domain name in the blacklist
         """
+
         self.upstream = upstream
         self.upstream_port = upstream_port
         self.address = address
@@ -30,7 +32,6 @@ class InterceptResolver(BaseResolver):
         if qname in self.blacklist:
             answer = RR(self.block_answer, rdata=A(self.address))
             reply.add_answer(answer)
-            reply.header.set_rcode(5)       #change header status with NOERROR to REFUSED
             return reply
 
         if handler.protocol == 'udp':

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from dnslib.dns import DNSRecord
 
+
 def dns_request(domain, qtype, address, port, nodig=False):
+
 	"""
 	    Simple DNS Client - may be used to testing responses from DNS server,
 	    					results are displayed in the console
@@ -12,10 +15,12 @@ def dns_request(domain, qtype, address, port, nodig=False):
 	    port		- DNS server port
 	            
 	"""
+
 	request = DNSRecord.question(domain, qtype)
 	paket = request.send(address, port)
 	answer = DNSRecord.parse(paket)
 	return answer
+
 
 if __name__ == '__main__':
 
