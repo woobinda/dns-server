@@ -30,6 +30,7 @@ class InterceptResolver(BaseResolver):
         if qname in self.blacklist:
             answer = RR(self.block_answer, rdata=A(self.address))
             reply.add_answer(answer)
+            reply.header.set_rcode(5)       #change header status with NOERROR to REFUSED
             return reply
 
         if handler.protocol == 'udp':
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     import time, config
 
     port = 53
-    address = '0.0.0.0'
+    address = '127.0.0.1'
     tcp = True
 
     upstream, upstream_port = config.upstream[0], config.upstream[1]
