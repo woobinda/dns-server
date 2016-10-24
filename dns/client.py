@@ -3,7 +3,7 @@ from __future__ import print_function
 from dnslib.dns import DNSRecord
 
 
-def dns_request(domain, qtype, address, port, nodig=False):
+def dns_request(domain, qtype, address, port):
 
 	"""
 	    Simple DNS Client - may be used to testing responses from DNS server,
