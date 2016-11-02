@@ -8,10 +8,10 @@ class InterceptResolver(BaseResolver):
     """
         InterceptResolver - proxy requests to upstream server
                             (optionally intercepting)
-            
-    """
-    def __init__(self, upstream, upstream_port, address, blacklist, block_answer):
 
+    """
+
+    def __init__(self, upstream, upstream_port, address, blacklist, block_answer):
         """
             upstream/upstream_port      - upstream server ip and port
             address                     - listen address
@@ -44,7 +44,8 @@ class InterceptResolver(BaseResolver):
 
 if __name__ == '__main__':
 
-    import time, config
+    import time
+    import config
 
     port = 53
     address = '127.0.0.1'
@@ -59,13 +60,13 @@ if __name__ == '__main__':
                                  block_answer=config.block_answer)
 
     print("Starting Intercept Proxy (%s:%d -> %s:%d) [%s]" % (
-                        address or "*", port,
-                        upstream, upstream_port,
-                        "UDP/TCP" if tcp else "UDP"))
+        address or "*", port,
+        upstream, upstream_port,
+        "UDP/TCP" if tcp else "UDP"))
 
     logger = DNSLogger("request, reply, truncated, error", False)
 
-    DNSHandler.log = { 
+    DNSHandler.log = {
         'log_request',      # DNS Request
         'log_reply',        # DNS Response
         'log_truncated',    # Truncated
