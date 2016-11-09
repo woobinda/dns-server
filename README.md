@@ -8,4 +8,5 @@ config.py - startup config for DNS server.
 client.py - is a simple dns client, that may be used to testing responses from DNS server, results are displayed in the console.
 
 To install all dependencies and run the application, you can use the console command to Makefile:
+
 $make start
