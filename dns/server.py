@@ -11,14 +11,14 @@ class InterceptResolver(BaseResolver):
 
     """
 
-    def __init__(self, upstream, upstream_port, address, blacklist, block_answer):
+    def __init__(self, upstream, upstream_port,
+                 address, blacklist, block_answer):
         """
             upstream/upstream_port      - upstream server ip and port
             address                     - listen address
             blacklist                   - list of blocked domain names
-            block_answer                - default response if the queried domain name in the blacklist
+            block_answer                - default blacklist response
         """
-
         self.upstream = upstream
         self.upstream_port = upstream_port
         self.address = address
@@ -43,7 +43,7 @@ class InterceptResolver(BaseResolver):
 
 
 if __name__ == '__main__':
-
+    
     import time
     import config
 

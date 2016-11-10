@@ -5,8 +5,8 @@ from dnslib.dns import DNSRecord
 
 def dns_request(domain, qtype, address, port):
     """
-        Simple DNS Client - may be used to testing responses from DNS server,
-                                            results are displayed in the console
+        Simple DNS Client - may be used to testing responses
+        from DNS server. Results are displayed in the console
 
         domain		- domain to resolve
         qtype		- DNS record type
@@ -14,7 +14,6 @@ def dns_request(domain, qtype, address, port):
         port		- DNS server port
 
     """
-
     request = DNSRecord.question(domain, qtype)
     paket = request.send(address, port)
     answer = DNSRecord.parse(paket)
