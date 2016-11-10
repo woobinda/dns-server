@@ -8,4 +8,6 @@ client.py - is a simple dns client, and may be used for testing responses from D
 
 To install all dependencies and run the application, you can use the console command to Makefile:
 
+To install all dependencies and run the application, you can use the console command to Makefile:
+
 $make start

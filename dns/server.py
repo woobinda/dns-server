@@ -43,7 +43,7 @@ class InterceptResolver(BaseResolver):
 
 
 if __name__ == '__main__':
-    
+
     import time
     import config
 
@@ -60,9 +60,10 @@ if __name__ == '__main__':
                                  block_answer=config.block_answer)
 
     print("Starting Intercept Proxy (%s:%d -> %s:%d) [%s]" % (
-        address or "*", port,
-        upstream, upstream_port,
-        "UDP/TCP" if tcp else "UDP"))
+                                        address or "*", port,
+                                        upstream, upstream_port,
+                                        "UDP/TCP" if tcp else "UDP"
+                                        ))
 
     logger = DNSLogger("request, reply, truncated, error", False)
 
