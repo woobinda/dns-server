@@ -48,7 +48,7 @@ if __name__ == '__main__':
     import config
 
     port = 53
-    address = '127.0.0.1'
+    address = '0.0.0.0'
     tcp = True
 
     upstream, upstream_port = config.upstream[0], config.upstream[1]

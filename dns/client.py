@@ -12,7 +12,6 @@ def dns_request(domain, qtype, address, port):
         qtype		- DNS record type
         address		- DNS server address
         port		- DNS server port
-
     """
     request = DNSRecord.question(domain, qtype)
     paket = request.send(address, port)
